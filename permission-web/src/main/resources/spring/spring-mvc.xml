@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <context:annotation-config/>
 
-    <!-- 启动注解驱动的springmvc功能 -->
+    <!-- 启动注解驱动的springmvc的功能 -->
     <mvc:annotation-driven/>
 
     <!-- 扫描的control路径 -->
