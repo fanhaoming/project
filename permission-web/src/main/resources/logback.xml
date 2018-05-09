@@ -18,23 +18,23 @@
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
         </encoder>
     </appender>
-    <!-- 可对日志进行压缩归档并生成新的日志文件 -->
+<!--    &lt;!&ndash; 可对日志进行压缩归档并生成新的日志文件 &ndash;&gt;
     <appender name="permission" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 表示tomcat启动的时候会在指定路径下面生成log文件-->
+        &lt;!&ndash; 表示tomcat启动的时候会在指定路径下面生成log文件&ndash;&gt;
         <file>${catalina.home}/logs/permission.log</file>
-        <!-- rollingPolicy指定压缩规则，TimeBasedRollingPolicy表示以时间规则进行压缩 -->
+        &lt;!&ndash; rollingPolicy指定压缩规则，TimeBasedRollingPolicy表示以时间规则进行压缩 &ndash;&gt;
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <FileNamePattern>${catalina.home}/logs/permission.%d{yyyy-MM-dd}.log.gz</FileNamePattern>
         </rollingPolicy>
-        <!-- 设置日志的显示样式 -->
+        &lt;!&ndash; 设置日志的显示样式 &ndash;&gt;
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
         </layout>
     </appender>
-    <!-- 如果一个appender没有被指定在logger，则对全局有效 -->
+    &lt;!&ndash; 如果一个appender没有被指定在logger，则对全局有效 &ndash;&gt;
     <logger name="xxx" level="INFO">
         <appender-ref ref="permission"/>
-    </logger>
+    </logger>-->
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
