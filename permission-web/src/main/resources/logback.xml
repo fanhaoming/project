@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- scan设置为true时，文件改变，将会重新加载，默认值为true、
+    scanPeriod设置配置文件是否有修改的时间间隔，默认时间间隔为一分钟，如果不加单位，默认毫秒
+ -->
+<configuration scan="true" scanPeriod="60 seconds">1
+    <!-- 将日志输出到控制台 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- 设置日志输出格式
+             %d表示日期
+             %thread表示当前进程
+             %level标示日志级别
+             %-5level表示级别往左显示5个字符宽度，方便区分日志
+             %logger 表示日志名称
+             %msg表示日志信息
+             %n换行
+             -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 可对日志进行压缩归档并生成新的日志文件 -->
+    <appender name="permission" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 表示tomcat启动的时候会在指定路径下面生成log文件-->
+        <file>${catalina.home}/logs/permission.log</file>
+        <!-- rollingPolicy指定压缩规则，TimeBasedRollingPolicy表示以时间规则进行压缩 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${catalina.home}/logs/permission.%d{yyyy-MM-dd}.log.gz</FileNamePattern>
+        </rollingPolicy>
+        <!-- 设置日志的显示样式 -->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </layout>
+    </appender>
+    <!-- 如果一个appender没有被指定在logger，则对全局有效 -->
+    <logger name="xxx" level="INFO">
+        <appender-ref ref="permission"/>
+    </logger>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
