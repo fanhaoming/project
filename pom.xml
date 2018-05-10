@@ -21,6 +21,7 @@
   <modules>
     <module>permission-web</module>
     <module>permission</module>
+    <module>core</module>
   </modules>
 
   <dependencies>
