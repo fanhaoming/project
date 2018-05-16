@@ -10,6 +10,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>core</artifactId>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <dependency>
             <groupId>javax.validation</groupId>
@@ -21,7 +33,42 @@
             <artifactId>hibernate-validator</artifactId>
             <version>5.2.4.Final</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/nio/nio -->
+        <dependency>
+            <groupId>nio</groupId>
+            <artifactId>nio</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.25-incubating</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
 
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jredis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${springredis.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

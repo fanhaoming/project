@@ -16,12 +16,16 @@
 
   <properties>
     <springframework.version>4.3.10.RELEASE</springframework.version>
+    <jredis.version>2.1.0</jredis.version>
+    <springredis.version>1.0.2.RELEASE</springredis.version>
   </properties>
 
   <modules>
     <module>permission-web</module>
     <module>permission</module>
+    <module>generator</module>
     <module>core</module>
+    <module>test</module>
   </modules>
 
   <dependencies>

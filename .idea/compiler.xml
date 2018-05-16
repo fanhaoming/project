@@ -7,15 +7,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="core" />
+        <module name="generator" />
         <module name="permission" />
         <module name="permission-web" />
+        <module name="test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="core" target="1.5" />
+      <module name="core" target="1.7" />
+      <module name="generator" target="1.8" />
       <module name="permission" target="1.5" />
       <module name="permission-web" target="1.5" />
       <module name="project" target="1.5" />
+      <module name="test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
