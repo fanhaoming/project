@@ -58,28 +58,37 @@ public class SchemaBuild {
 				String comment = columnMap.get("COLUMN_COMMENT").toString();
 				String nullable = columnMap.get("IS_NULLABLE").toString();
 				String maxlength = "0";
+				//CHARACTER_MAXIMUM_LENGTH:以字符为单位的最大长度，适于二进制数据、字符数据，或者文本和图像数据
 				if (columnMap.get("CHARACTER_MAXIMUM_LENGTH") != null)
 					maxlength = columnMap.get("CHARACTER_MAXIMUM_LENGTH").toString();
 				String defaultValue = "";
+				//默认值
 				if (columnMap.get("COLUMN_DEFAULT") != null)
 					defaultValue = columnMap.get("COLUMN_DEFAULT").toString();
 
 				Column column = new Column();
 				column.setName(columnName);
 				column.setType(dataType);
+				//将列的数据库类型转换成java类型
 				column.setJavaType(ColumnNameFormat.getJavaType(dataType, columnType));
+				//设置java类成员变量命名格式
 				column.setProperty(PropertyNameConvert.columnToProperty(columnName));
+				//将属性转换成类名
 				column.setPropertySet(PropertyNameConvert.propertyToClass(column.getProperty()));
 				column.setPropertyGet(PropertyNameConvert.propertyToClass(column.getProperty()));
+				//设置列描述
 				column.setComment(comment);
 				column.setJdbcType(ColumnNameFormat.getJdbcType(dataType, columnType));
+				//获取列的最长长度
 				column.setLength(Integer.parseInt(maxlength));
 				column.setGeographyType(ColumnNameFormat.getGeographyType(dataType));
+				//设置是否可空
 				if (nullable.equals("NO"))
 					column.setIsNotNull(true);
 				else
 					column.setIsNotNull(false);
 
+				//设置默认值
 				if (StringUtils.isNotBlank(defaultValue)) {
 					switch (column.getJavaType()) {
 					case "String":
@@ -104,13 +113,14 @@ public class SchemaBuild {
 				columnExtension.setIsListIngore(false);
 				
 				column.setColumnExtension(columnExtension);
-
+				//判断是注释中有｛｝的
 				String regEx = "(.*?)\\{(.*?)\\}";
 				Pattern pattern = Pattern.compile(regEx);
+				//根据正则判断各个列的注释中的标识
 				Matcher matcher = pattern.matcher(column.getComment());
 				boolean rs = matcher.find();
 				if (rs) {
-					String special = matcher.group(2);
+					String special = matcher.group(2);//获取第二部分的数据，即大括号中的内容
 					String[] specials = special.split(",");
 					for (String info : specials) {
 						switch (info) {
@@ -138,6 +148,7 @@ public class SchemaBuild {
 					}
 				}
 
+				//判断注释中有中括号[]的
 				regEx = "(.*?)\\[(.*?)\\]";
 				pattern = Pattern.compile(regEx);
 				matcher = pattern.matcher(column.getComment());
@@ -145,7 +156,7 @@ public class SchemaBuild {
 				rs = matcher.find();
 				if (rs) {
 					String special = matcher.group(2);
-
+					//中括号中有以json(内容)为json数据
 					regEx = "json\\((.*?)\\)";
 					pattern = Pattern.compile(regEx);
 					matcher = pattern.matcher(special);
@@ -154,7 +165,7 @@ public class SchemaBuild {
 						columnExtension.setColumnExtensionType(ColumnExtensionType.JsonClass);
 						columnExtension.setName(matcher.group(1));
 					}
-
+					//中括号中有jsons(内容)为json数组
 					regEx = "jsons\\((.*?)\\)";
 					pattern = Pattern.compile(regEx);
 					matcher = pattern.matcher(special);
@@ -163,7 +174,7 @@ public class SchemaBuild {
 						columnExtension.setColumnExtensionType(ColumnExtensionType.JsonList);
 						columnExtension.setName(matcher.group(1));
 					}
-
+					//中括号中有以enum(内容)为枚举
 					regEx = "enum\\((.*?)\\)";
 					pattern = Pattern.compile(regEx);
 					matcher = pattern.matcher(special);
@@ -172,7 +183,7 @@ public class SchemaBuild {
 						columnExtension.setColumnExtensionType(ColumnExtensionType.Enum);
 						columnExtension.setName(matcher.group(1));
 					}
-
+					//中括号中有以enums(内容)为枚举集合
 					regEx = "enums\\((.*?)\\)";
 					pattern = Pattern.compile(regEx);
 					matcher = pattern.matcher(special);
@@ -181,7 +192,7 @@ public class SchemaBuild {
 						columnExtension.setColumnExtensionType(ColumnExtensionType.EnumList);
 						columnExtension.setName(matcher.group(1));
 					}
-
+					//中括号中有以dict(内容)为数据字典
 					regEx = "dict\\((.*?)\\)";
 					pattern = Pattern.compile(regEx);
 					matcher = pattern.matcher(special);
@@ -191,7 +202,7 @@ public class SchemaBuild {
 						columnExtension.setName(matcher.group(1));
 					}
 				}
-
+				//XXX[或{，即匹配后面以[或｛结尾的数据
 				regEx = "(.*?)(\\[|\\{)";
 				pattern = Pattern.compile(regEx);
 				matcher = pattern.matcher(column.getComment());
@@ -201,13 +212,14 @@ public class SchemaBuild {
 					comment = matcher.group(1);
 					column.setComment(comment);
 				}
-
+				//判断是否主键
 				if (columnKey.equals("PRI")) {
 					column.setIsPrimary(true);
 					table.setIdColumn(column);
 				} else {
 					column.setIsPrimary(false);
 				}
+				//判断是否自增长
 				if (extra.equals("auto_increment")) {
 					column.setIsAutoIncrement(true);
 					table.setAutoIncrementColumn(column);
@@ -219,14 +231,16 @@ public class SchemaBuild {
 			}
 
 			table.setColumns(columns);
+			//将不是自增长的列放入 新增需插入的字段集合，到时生成的sql，这些字段将会是需要插入的字段
 			table.setInsertColumns(ListUtil.findAll(columns, column -> {
 				return column.getIsAutoIncrement() == false;
 			}));
-
+			//将不是create_time并且不是主键的字段加入 更新需改变的字段集合
 			table.setUpdateColumns(ListUtil.findAll(columns, column -> {
 				return column.getIsPrimary() == false && !column.getName().equals("create_time");
 			}));
 
+			//设置获取列表时不忽略的字段集合
 			table.setListColumns(ListUtil.findAll(columns, column -> {
 				return column.getColumnExtension().getIsListIngore() == false;
 			}));

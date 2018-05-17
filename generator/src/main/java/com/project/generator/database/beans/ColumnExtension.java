@@ -1,11 +1,19 @@
 package com.project.generator.database.beans;
-
+/**
+* @Author fhm
+* @Description 列的扩展
+* @Date 2018/5/17  17:38
+* @Param
+* @Return
+**/
 public class ColumnExtension {
 
 	private String name;
-
+	//序列化时是否忽略生成为json
 	private Boolean isJsonIgnore;
+	//是否为数据传输对象
 	private Boolean isViewObject;
+	//生成list时是否忽略
 	private Boolean isListIngore;
 
 	public Boolean getIsListIngore() {

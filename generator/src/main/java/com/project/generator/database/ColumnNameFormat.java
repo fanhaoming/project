@@ -6,7 +6,13 @@ import com.project.generator.database.beans.GeographyType;
 public class ColumnNameFormat {
 
 	
-
+	/**
+	* @Author fhm
+	* @Description 将数据库类型转换成java类型
+	* @Date 2018/5/17  17:28
+	* @Param [dataType, columnType]
+	* @Return java.lang.String
+	**/
 	public static String getJavaType(String dataType, String columnType) {
 
 		if (dataType.equalsIgnoreCase("int")) {
@@ -89,6 +95,13 @@ public class ColumnNameFormat {
 		return "";
 	}
 
+	/**
+	* @Author
+	* @Description 定位类型
+	* @Date 2018/5/17  17:35
+	* @Param [dataType]
+	* @Return com.project.generator.database.beans.GeographyType
+	**/
 	public static GeographyType getGeographyType(String dataType) {
 
 		if (dataType.equalsIgnoreCase("point")) {
@@ -122,6 +135,13 @@ public class ColumnNameFormat {
 		return GeographyType.none;
 	}
 
+	/**
+	* @Author fhm
+	* @Description 获取数据库类型
+	* @Date 2018/5/17  17:33
+	* @Param [dataType, columnType]
+	* @Return java.lang.String
+	**/
 	public static String getJdbcType(String dataType, String columnType) {
 
 		if (dataType.equalsIgnoreCase("int")) {

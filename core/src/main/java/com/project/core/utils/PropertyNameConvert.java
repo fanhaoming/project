@@ -1,6 +1,14 @@
 package com.project.core.utils;
 
 public class PropertyNameConvert {
+
+	/**
+	* @Author fhm
+	* @Description 将数据库列名转换成java驼峰属性格式
+	* @Date 2018/5/17  17:29
+	* @Param [column]
+	* @Return java.lang.String
+	**/
 	public static String columnToProperty(String column) {
 		String property = "";
 		boolean nextNeedUpper = false;
@@ -25,6 +33,12 @@ public class PropertyNameConvert {
 		return className.substring(0, 1).toLowerCase() + className.substring(1);
 	}
 
+	/**
+	* @Author fhm
+	* @Description 将属性转换成类名，如student->Student
+	* @Param [property]
+	* @Return java.lang.String
+	**/
 	public static String propertyToClass(String property) {
 		return property.substring(0, 1).toUpperCase() + property.substring(1);
 	}

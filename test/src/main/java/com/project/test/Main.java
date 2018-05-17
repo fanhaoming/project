@@ -25,19 +25,20 @@ import java.util.List;
  **/
 public class Main {
     public static void main(String[] args) throws Exception{
-        String configFile = args[0];
-        System.out.println("args:"+args[0]);
-        String diretory = FilenameUtils.getFullPath(configFile);
+      //  String configFile = args[0];
+        //System.out.println("args:"+args[0]);
+        String //diretory = FilenameUtils.getFullPath(configFile);
+        diretory = ClassLoader.getSystemResource("test.xml").getPath();
         if(StringUtils.isBlank(diretory)){
             File currentFile = new File(".");
             diretory = currentFile.getCanonicalPath();
         }
         System.out.println("diretory:"+diretory);
-        Configuration configuration = ConfigurationRead.read(configFile);
+        Configuration configuration = ConfigurationRead.read(diretory);
         CodeSchemaFormat codeSchemaFormat = new CodeSchemaFormat();
         codeSchemaFormat.setConfiguration(configuration);
-        Schema schema = codeSchemaFormat.build();
-        CodeCreate code = new CodeCreate();
+       Schema schema = codeSchemaFormat.build();
+       /*  CodeCreate code = new CodeCreate();
 
         List<String> skipTables = new ArrayList<String>();
         if (StringUtils.isBlank(configuration.getSkipTables()) == false) {
@@ -49,7 +50,7 @@ public class Main {
         while(iterator.hasNext()){
             System.out.println(iterator.next());
 
-        }
+        }*/
 
     }
 
