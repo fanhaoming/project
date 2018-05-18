@@ -26,17 +26,17 @@ public class CodeCreate {
 
 		String content = FreeMarkerTemplate.getInstance().processFile(create.getTemplate(), data);
 		String path = create.getOutput();
-		
-		path = path.replaceAll("\\{tableName\\}", table.getClassName());
-		path = path.replaceAll("\\{moduleName\\}", table.getModuleName());
-		path = path.replaceAll("\\{tableInstanceName\\}", table.getInstanceName());
-		
-		File outFile = new File(path);
+
 		
 		if(StringUtils.isBlank(content)){
 			//System.out.println("内容为空,跳过  " + create.getType() +  " " + outFile.getName()+ " " + table.getClassName());
 			return;
 		}
+		//替换地址
+		path = path.replaceAll("\\{tableName\\}", table.getClassName());
+		path = path.replaceAll("\\{moduleName\\}", table.getModuleName());
+		path = path.replaceAll("\\{tableInstanceName\\}", table.getInstanceName());
+		File outFile = new File(path);
 		File file = new File(path);
 		if (file.exists()) {
 			
