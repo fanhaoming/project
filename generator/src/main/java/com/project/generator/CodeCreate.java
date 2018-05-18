@@ -28,6 +28,7 @@ public class CodeCreate {
 		String path = create.getOutput();
 		
 		path = path.replaceAll("\\{tableName\\}", table.getClassName());
+		path = path.replaceAll("\\{moduleName\\}", table.getModuleName());
 		path = path.replaceAll("\\{tableInstanceName\\}", table.getInstanceName());
 		
 		File outFile = new File(path);

@@ -7,6 +7,7 @@ public class Table {
 	private List<Column> columns;
 	private String tableName;
 	private String instanceName;
+	private String moduleName;
 	private String comment;
 	private String className;
 	private Column idColumn;
@@ -17,6 +18,15 @@ public class Table {
 	private List<Column> viewObjectColumns;
 	private List<Column> notViewObjectColumns;
 	private List<Column> listColumns;
+
+
+	public String getModuleName() {
+		return moduleName;
+	}
+
+	public void setModuleName(String moduleName) {
+		this.moduleName = moduleName;
+	}
 
 	public List<Column> getNotViewObjectColumns() {
 		return notViewObjectColumns;

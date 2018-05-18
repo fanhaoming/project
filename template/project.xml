@@ -7,10 +7,10 @@
 		<password>root</password>
 	</database>
 	<tables>
-		
-	</tables>	
+
+	</tables>
 	<skipTables></skipTables>
-	<package>project</package>
+	<package>com.project</package>
 	<output></output>
 	<api>api</api>
 	<enumNamespace>zeus.enums</enumNamespace>
@@ -18,19 +18,20 @@
 	<dictNamespace>zeus.dict</dictNamespace>
 	<basePropertys>id,create_time,update_time,creator,modifier,regionNo,clientId</basePropertys>
 	<creates>
-		<create type="viewObject" output="../zeus.domain/src/main/java/zeus/viewobject/{tableName}ViewObject.java" template="viewObject.tpl"><![CDATA[/\*\*\s*CreateByCodeGeneratorStart\s*\*/(.*?)/\*\*\s*CreateByCodeGeneratorEnd\s*\*/]]></create>
-		<create type="domain" output="../zeus.domain/src/main/java/zeus/domain/{tableName}.java" exten=".java" template="domain.tpl"><![CDATA[/\*\*\s*CreateByCodeGeneratorStart\s*\*/(.*?)/\*\*\s*CreateByCodeGeneratorEnd\s*\*/]]></create>
-		<create type="dao" output="../zeus.dao/src/main/java/zeus/dao/{tableName}Mapper.java" template="dao.tpl"></create>
-		<create type="mapper" output="../zeus.dao/src/main/java/zeus/mapper/{tableName}Mapper.xml" template="mapping.tpl"><![CDATA[<\!--\s*CreateByCodeGeneratorStart\s*-->(.*?)<\!--\s*CreateByCodeGeneratorEnd\s*-->]]></create>
-		<create type="service" output="../zeus.service/src/main/java/zeus/service/I{tableName}Service.java" template="service.tpl"></create>
-		<create type="serviceImpl" output="../zeus.service/src/main/java/zeus/service/impl/{tableName}Service.java" template="serviceImpl.tpl"></create>
+		<create type="viewObject" output="../{moduleName}/src/main/java/com/project/{moduleName}/viewobject/{tableName}ViewObject.java" template="viewObject.tpl"><![CDATA[/\*\*\s*CreateByCodeGeneratorStart\s*\*/(.*?)/\*\*\s*CreateByCodeGeneratorEnd\s*\*/]]></create>
+		<create type="domain" output="../{moduleName}/src/main/java/com/project/{moduleName}/domain/{tableName}.java" exten=".java" template="domain.tpl"><![CDATA[/\*\*\s*CreateByCodeGeneratorStart\s*\*/(.*?)/\*\*\s*CreateByCodeGeneratorEnd\s*\*/]]></create>
+		<create type="dao" output="../{moduleName}/src/main/java/com/project/{moduleName}/dao/{tableName}Mapper.java" template="dao.tpl"></create>
+		<create type="mapper" output="../{moduleName}/src/main/java/com/project/{moduleName}/mapper/{tableName}Mapper.xml" template="mapping.tpl"><![CDATA[<\!--\s*CreateByCodeGeneratorStart\s*-->(.*?)<\!--\s*CreateByCodeGeneratorEnd\s*-->]]></create>
+		<create type="service" output="../{moduleName}/src/main/java/com/project/{moduleName}/service/{tableName}Service.java" template="service.tpl"></create>
+		<create type="serviceImpl" output="../{moduleName}/src/main/java/com/project/{moduleName}/service/impl/{tableName}ServiceImpl.java" template="serviceImpl.tpl"></create>
 
-		<create type="condition" output="../zeus.dao/src/main/java/zeus/condition/{tableName}Condition.java" template="condition.tpl"></create>
-		<create type="control" output="../zeus.api/src/main/java/zeus/api/control/{tableName}Control.java" template="control.tpl"></create>
+		<create type="condition" output="../{moduleName}/src/main/java/com/project/{moduleName}/condition/{tableName}Condition.java" template="condition.tpl"></create>
+		<create type="control" output="../{moduleName}-web/src/main/java/com/project/{moduleName}/control/{tableName}Control.java" template="control.tpl"></create>
 
-		<create type="add" output="../zeus.web/src/main/webapp/page/{tableInstanceName}/add.html" template="add.tpl"></create>
+		<!--<create type="add" output="../zeus.web/src/main/webapp/page/{tableInstanceName}/add.html" template="add.tpl"></create>
 		<create type="edit" output="../zeus.web/src/main/webapp/page/{tableInstanceName}/edit.html" template="edit.tpl"></create>
 		<create type="input" output="../zeus.web/src/main/webapp/page/{tableInstanceName}/input.html" template="input.tpl"></create>
 		<create type="list" output="../zeus.web/src/main/webapp/page/{tableInstanceName}/list.html" template="list.tpl"></create>
+		-->
 	</creates>
 </config>

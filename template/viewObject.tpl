@@ -1,14 +1,12 @@
-package ${configuration.packageName}.viewobject;
+package ${configuration.packageName}.${table.moduleName}.viewobject;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.smart.java.utils.mybatis.Table;
 import com.smart.java.utils.project.base.BaseViewObject;
 <#list table.imports as import>
 import ${import};
 </#list>
 
 @ApiModel(value = "${table.comment}")
-@Table(name = "${table.tableName}")
 public class ${table.className}ViewObject extends BaseViewObject {
 	/**CreateByCodeGeneratorStart*/
  	<#list table.viewObjectColumns as column>

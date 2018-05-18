@@ -1,14 +1,15 @@
-package ${configuration.packageName}.${table.moduleName}.domain;
+package ${configuration.packageName}.domain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import ${configuration.packageName}.${table.moduleName}.viewobject.${table.className}ViewObject;
+import com.smart.java.utils.mybatis.Table;
+import ${configuration.packageName}.viewobject.${table.className}ViewObject;
 <#list table.imports as import>
 import ${import};
 </#list>
-import com.project.core.base.BaseDomain;
 
 @ApiModel(value = "${table.comment}")
-public class ${table.className} extends BaseDomain {
+@Table(name = "${table.tableName}")
+public class ${table.className} extends BaseBusinessObject {
 	/**CreateByCodeGeneratorStart*/
 	public ${table.className} setViewObject(${table.className}ViewObject ${table.instanceName}){
 		this.setId(${table.instanceName}.getId());

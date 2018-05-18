@@ -40,7 +40,21 @@ public class SchemaBuild {
 
 			String tableComment = map.get("TABLE_COMMENT").toString();
 			table.setTableName(tableName);
-			table.setComment(tableComment);
+
+			//通过表的注释，如：权限{permission},会将权限放在table的comment字段中，permission放在table的moduleName模块名中
+			String regEx = "(.*?)\\{(.*?)\\}";
+			Pattern pattern = Pattern.compile(regEx);
+			//根据正则判断各个列的注释中的标识
+			Matcher matcher = pattern.matcher(tableComment);
+			boolean rs = matcher.find();
+			if(rs){
+				table.setComment(matcher.group(1));
+				table.setModuleName(matcher.group(2));
+			}else {//如果不匹配，默认放到core模块中
+				table.setComment(tableComment);
+				table.setModuleName("core");
+			}
+
 
 			List<Map<String, Object>> columnResult = jdbcTemplate
 					.queryForList(
@@ -114,11 +128,11 @@ public class SchemaBuild {
 				
 				column.setColumnExtension(columnExtension);
 				//判断是注释中有｛｝的
-				String regEx = "(.*?)\\{(.*?)\\}";
-				Pattern pattern = Pattern.compile(regEx);
+				regEx = "(.*?)\\{(.*?)\\}";
+				pattern = Pattern.compile(regEx);
 				//根据正则判断各个列的注释中的标识
-				Matcher matcher = pattern.matcher(column.getComment());
-				boolean rs = matcher.find();
+				matcher = pattern.matcher(column.getComment());
+				rs = matcher.find();
 				if (rs) {
 					String special = matcher.group(2);//获取第二部分的数据，即大括号中的内容
 					String[] specials = special.split(",");

@@ -54,7 +54,7 @@ public class CodeSchemaFormat {
 		Schema schema = new SchemaBuild(database).build();
 
 		List<String> basePropertys = new ArrayList<String>();
-		if (StringUtils.isBlank(configuration.getBasePropertys()) == false) {
+		if (StringUtils.isBlank(configuration.getBasePropertys()) == false) {//如果配置文件中的基础字段不为空
 			basePropertys = ListUtil.select(Arrays.asList(configuration.getBasePropertys().split(",")), (r) -> {
 				return r;
 			});
@@ -68,7 +68,7 @@ public class CodeSchemaFormat {
 			List<String> imports = new ArrayList<String>();
 
 			for (Column column : table.getColumns()) {
-
+				//将不是基础字段的属性进行处理，对比处理类型进行导入引用
 				if (!ListUtil.isExists(finalBasePropertys, p -> {
 					return p.equals(column.getName());
 				})) {

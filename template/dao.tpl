@@ -1,8 +1,8 @@
-package ${configuration.packageName}.dao;
+package ${configuration.packageName}.${table.moduleName}.dao;
 
 
-import ${configuration.packageName}.domain.${table.className};
-import com.smart.java.utils.project.base.BaseDao;
+import ${configuration.packageName}.${table.moduleName}.domain.${table.className};
+import com.project.core.base.BaseDao;
 
 
 public interface ${table.className}Mapper extends BaseDao<${table.className}> {

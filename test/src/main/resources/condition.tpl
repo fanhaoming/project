@@ -1,4 +1,4 @@
-package ${configuration.packageName}.${table.moduleName}.condition;
+package ${configuration.packageName}.condition;
 
 public class ${table.className}Condition extends BaseCondition {
 	/**CreateByCodeGeneratorStart*/
