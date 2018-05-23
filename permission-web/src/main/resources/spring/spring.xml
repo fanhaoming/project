@@ -24,6 +24,9 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         </property>
     </bean>
 
+    <!-- 全局异常捕获处理 -->
+    <bean class="com.project.core.common.GlobalExceptionResolver"/>
+
     <!-- 配置redis-->
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <property name="maxIdle" value="${redis.maxIdle}" />
@@ -58,7 +61,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <property name="configLocation" value="classpath:spring/spring-mybatis.xml"/>
         <property name="mapperLocations" value="classpath*:com/project/*/mapper/*Mapper.xml"/>
     </bean>
-
+    <!-- mapper扫描配置 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.project.*.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
@@ -72,7 +75,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <!-- 开启事务注解 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <!-- druid对数据库的监控 -->
+    <!-- druid对数据库的监控start -->
     <bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
         <!-- 如果超过3000毫秒，则判断这个sql是个慢sql -->
         <property name="slowSqlMillis" value="3000"></property>
@@ -85,5 +88,5 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="wall-filter" class="com.alibaba.druid.wall.WallFilter">
         <property name="dbType" value="mysql"/>
     </bean>
-
+    <!-- druid对数据库的监控end -->
 </beans>

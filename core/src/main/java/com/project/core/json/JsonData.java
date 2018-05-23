@@ -1,7 +1,10 @@
-package com.project.core.common;
+package com.project.core.json;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/5/10.
@@ -19,14 +22,22 @@ public class JsonData {
     public JsonData(boolean ret){
         this.ret = ret;
     }
+
+    public static JsonData success(){
+        return new JsonData(true);
+    }
+
+
     public static JsonData success(Object object){
         JsonData jsonData = new JsonData(true);
         jsonData.data = object;
         return jsonData;
     }
 
-    public static JsonData success(){
+    public static JsonData success(Object object,String msg){
         JsonData jsonData = new JsonData(true);
+        jsonData.data = object;
+        jsonData.msg = msg;
         return jsonData;
     }
 
@@ -34,5 +45,13 @@ public class JsonData {
         JsonData jsonData = new JsonData(false);
         jsonData.msg = msg;
         return jsonData;
+    }
+
+    public Map<String,Object> toMap(){
+        HashMap map = new HashMap();
+        map.put("ret",ret);
+        map.put("data",data);
+        map.put("msg",msg);
+        return map;
     }
 }
