@@ -34,6 +34,13 @@ public class JsonMapper {
 
     }
 
+    /**
+    * @Author fhm
+    * @Description  对象转换成Json字符串
+    * @Date 2018/5/24  9:07
+    * @Param [t]
+    * @Return java.lang.String
+    **/
     public static <T> String obj2String(T t){
         if(t == null){
             return null;
@@ -41,21 +48,28 @@ public class JsonMapper {
         try{
             return t instanceof String ?(String)t:objectMapper.writeValueAsString(t);
         }catch (Exception e){
-            log.warn("parse object to String exception, error:{}", e);
+            log.warn("{} 转换成JSON字符串时发生错误, 错误信息:{}",t.getClass().getName(), e);
             return null;
         }
 
     }
 
 
-    public static <T> T string2Obj(String src, TypeReference<T> typeReference) {
-        if (src == null || typeReference == null) {
+    /**
+    * @Author fhm
+    * @Description JSON字符串转换成对象
+    * @Date 2018/5/24  9:08
+    * @Param [src, typeReference]
+    * @Return T
+    **/
+    public static <T> T string2Obj(String src, Class<T> clazz) {
+        if (src == null || clazz == null) {
             return null;
         }
         try {
-            return (T) (typeReference.getType().equals(String.class) ? src : objectMapper.readValue(src, typeReference));
+            return objectMapper.readValue(src, clazz);
         } catch (Exception e) {
-            log.warn("parse String to Object exception, String:{}, TypeReference<T>:{}, error:{}", src, typeReference.getType(), e);
+            log.warn("parse String to Object exception, String:{}, Class<T>:{}, error:{}", src, clazz.getName(), e);
             return null;
         }
     }
