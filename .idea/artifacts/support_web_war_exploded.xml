@@ -1,13 +1,15 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="permission-web:war exploded">
-    <output-path>$PROJECT_DIR$/permission-web/target/permission-web</output-path>
+  <artifact type="exploded-war" name="support-web:war exploded">
+    <output-path>$PROJECT_DIR$/support-web/target/support-web</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="permission-web" />
+          <element id="module-output" name="support-web" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: com.trunk:permission:1.0-SNAPSHOT" />
+          <element id="archive" name="support-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="support" />
+          </element>
           <element id="archive" name="core-1.0-SNAPSHOT.jar">
             <element id="module-output" name="core" />
           </element>
@@ -16,6 +18,7 @@
           <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.1.0" />
           <element id="library" level="project" name="Maven: nio:nio:1.0.3" />
           <element id="library" level="project" name="Maven: org.clojure:clojure:1.4.0" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.25-incubating" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
           <element id="library" level="project" name="Maven: redis.clients:jedis:2.1.0" />
@@ -27,8 +30,6 @@
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.6.6" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" />
-          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
-          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.3.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.10.RELEASE" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
@@ -62,9 +63,9 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/permission-web/target/permission-web/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/support-web/target/support-web/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="permission-web/web/Web" />
+      <element id="javaee-facet-resources" facet="support-web/web/Web" />
     </root>
   </artifact>
 </component>

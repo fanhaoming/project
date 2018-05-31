@@ -26,6 +26,9 @@
     <module>generator</module>
     <module>core</module>
     <module>test</module>
+    <module>basesupport</module>
+    <module>support</module>
+    <module>support-web</module>
   </modules>
 
   <dependencies>

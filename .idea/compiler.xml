@@ -8,8 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="core" />
         <module name="generator" />
-        <module name="permission" />
-        <module name="permission-web" />
+        <module name="support" />
+        <module name="support-web" />
         <module name="test" />
       </profile>
     </annotationProcessing>
@@ -19,6 +19,8 @@
       <module name="permission" target="1.5" />
       <module name="permission-web" target="1.5" />
       <module name="project" target="1.5" />
+      <module name="support" target="1.5" />
+      <module name="support-web" target="1.7" />
       <module name="test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
