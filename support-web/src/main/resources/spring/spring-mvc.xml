@@ -10,23 +10,35 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <context:annotation-config/>
-
+    <mvc:default-servlet-handler />
     <!-- 启动注解驱动的springmvc的功能 -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean id="jsonView" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="com.project.core.json.JsonObjectMapper"></bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <mvc:resources mapping="/static/js/**" location="/static/js"/>
     <mvc:resources mapping="/static/css/**" location="/static/css"/>
     <mvc:resources mapping="/static/images/**" location="/static/images"/>
 
     <!-- 扫描的control路径 -->
-    <context:component-scan base-package="com.project.permission.control"/>
+    <context:component-scan base-package="com.project.*"/>
     <!-- ??? -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
 
-    <!-- 处理返回值为json的数据 -->
-    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+    <!-- 处理返回值为json的数据
+    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+        <property name="objectMapper" value="com.project.core.json.JsonObjectMapper"/>
+    </bean>-->
+
+    <bean class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration" id="swagger2Config"/>
 
     <!-- 内部资源视图处理器，用户返回值对应的页面地址及文件类型 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

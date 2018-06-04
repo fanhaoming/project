@@ -91,8 +91,8 @@ public class CodeSchemaFormat {
 
 					if (column.getColumnExtension().getColumnExtensionType() == ColumnExtensionType.Dict) {
 						addImportString(imports, "com.fasterxml.jackson.databind.annotation.JsonDeserialize");						
-						addImportString(imports, "com.smart.java.utils.dictionary.DictJsonAnnotation;");
-						addImportString(imports, "com.smart.java.utils.project.json.DictDeserializer");
+						addImportString(imports, "com.project.core.dictionary.DictAnnotation;");
+						addImportString(imports, "com.project.core.json.DictDeserializer");
 					}
 
 					if (column.getColumnExtension().getIsJsonIgnore()) {

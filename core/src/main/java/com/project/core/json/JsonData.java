@@ -13,14 +13,14 @@ import java.util.Map;
 @Setter
 public class JsonData {
     //返回状态
-    private boolean ret;
+    private boolean status;
 
     private String msg;
 
     private Object data;
 
-    public JsonData(boolean ret){
-        this.ret = ret;
+    public JsonData(boolean status){
+        this.status = status;
     }
 
     public static JsonData success(){
@@ -49,7 +49,7 @@ public class JsonData {
 
     public Map<String,Object> toMap(){
         HashMap map = new HashMap();
-        map.put("ret",ret);
+        map.put("status",status);
         map.put("data",data);
         map.put("msg",msg);
         return map;

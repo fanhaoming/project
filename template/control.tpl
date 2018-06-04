@@ -35,7 +35,13 @@ public class ${table.className}Control extends BaseControl {
 		List<${table.className}> ${table.instanceName}s = ${table.instanceName}ServiceImpl.listByIds(ids);
 
 	}
-	
+
+@RequestMapping(value = "/${configuration.api}/${table.instanceName}/save", method = RequestMethod.POST)
+	@ResponseBody
+	@ApiOperation(value = "保存${table.comment}", response = ${table.className}.class, produces = "application/json")
+    public void save(@RequestBody ${table.className} ${table.instanceName}) {
+        ${table.instanceName}ServiceImpl.save(${table.instanceName});
+    }
 
 	/**CreateByCodeGeneratorEnd*/
 	

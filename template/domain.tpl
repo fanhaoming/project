@@ -44,7 +44,7 @@ public class ${table.className} extends BaseDomain {
 	private List<${column.columnExtension.name}> ${column.property}${defaultValue};
 	</#if>
 	<#if column.columnExtension.columnExtensionType == "Dict">
-	@DictJsonAnnotation(code = "${column.columnExtension.name}")
+	@DictAnnotation(code = "${column.columnExtension.name}")
 	@JsonDeserialize(using = DictDeserializer.class)
 	private int ${column.property} = 0;
 	</#if>

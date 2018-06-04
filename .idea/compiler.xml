@@ -14,7 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="core" target="1.7" />
+      <module name="core" target="1.8" />
       <module name="generator" target="1.8" />
       <module name="permission" target="1.5" />
       <module name="permission-web" target="1.5" />
