@@ -1,5 +1,7 @@
 package com.project.core.base;
 
+import com.project.core.base.page.Pager;
+
 import java.util.List;
 
 /**
@@ -24,7 +26,7 @@ public interface BaseDao<T> {
 
     int updateAll(T var1);
 
-    List<T> listAll();
+    List<T> listAll(Pager pager);
 
     List<T> listByIds(List<String> var1);
 

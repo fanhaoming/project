@@ -21,12 +21,9 @@
   </properties>
 
   <modules>
-    <module>permission-web</module>
-    <module>permission</module>
     <module>generator</module>
     <module>core</module>
     <module>test</module>
-    <module>basesupport</module>
     <module>support</module>
     <module>support-web</module>
   </modules>
@@ -148,5 +145,22 @@
   </dependencyManagement>
   <build>
     <finalName>project</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
   </build>
 </project>

@@ -59,11 +59,13 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:spring/spring-mybatis.xml"/>
-        <property name="mapperLocations" value="classpath*:com/project/*/mapper/*Mapper.xml"/>
+        <property name="mapperLocations" >
+            <value>classpath*:com/project/**/mapper/*.xml</value>
+        </property>
     </bean>
     <!-- mapper扫描配置 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.project.*.dao"/>
+        <property name="basePackage" value="com.project.support.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

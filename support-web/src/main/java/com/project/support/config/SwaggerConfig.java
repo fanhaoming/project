@@ -47,7 +47,6 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .apis(RequestHandlerSelectors.any())  // 对所有api进行监控
                 .paths(PathSelectors.any())   // 对所有路径进行监控
                 .build()
-                .securitySchemes(securitySchemes())
                 .securityContexts(securityContexts());
     }
 
@@ -55,31 +54,15 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
         return or(regex("/*.*"));
     }
 
-    private List<ApiKey> securitySchemes() {
-        return newArrayList(
-                new ApiKey("clientId", "客户端ID", "header"),
-                new ApiKey("clientSecret", "客户端秘钥", "header"),
-                new ApiKey("accessToken", "客户端访问标识", "header"));
-    }
 
     private List<SecurityContext> securityContexts() {
         return newArrayList(
                 SecurityContext.builder()
-                        .securityReferences(defaultAuth())
                         .forPaths(PathSelectors.regex("/*.*"))
                         .build()
         );
     }
 
-    List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return newArrayList(
-                new SecurityReference("clientId", authorizationScopes),
-                new SecurityReference("clientSecret", authorizationScopes),
-                new SecurityReference("accessToken", authorizationScopes));
-    }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()

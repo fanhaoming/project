@@ -1,8 +1,9 @@
 package com.project.core.dictionary;
 
-import com.project.core.base.page.AbstractCondition;
 
-public class DictTypeSearchCondition extends AbstractCondition{
+import com.project.core.base.AbstractCondition;
+
+public class DictTypeSearchCondition extends AbstractCondition {
 
 	private int domainId;
 	private String name;

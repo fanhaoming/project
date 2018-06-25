@@ -1,5 +1,6 @@
 package com.project.core.base;
 
+import com.project.core.base.page.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -58,8 +59,8 @@ public class BaseServiceImpl<T extends BaseDomain, BaseDaoT extends BaseDao<T>> 
         return t;
     }
 
-    public List<T> listAll() {
-        return this.baseDao.listAll();
+    public List<T> listAll(Pager pager) {
+        return this.baseDao.listAll(pager);
     }
 
     public List<T> saves(List<T> list) {

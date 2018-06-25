@@ -1,5 +1,7 @@
 package com.project.core.base;
 
+import com.project.core.base.page.Pager;
+
 import java.util.List;
 
 public interface BaseService <T extends BaseDomain, DaoT extends BaseDao<T>>{
@@ -23,5 +25,5 @@ public interface BaseService <T extends BaseDomain, DaoT extends BaseDao<T>>{
 
     List<T> listByIds(List<String> var1);
 
-    List<T> listAll();
+    List<T> listAll(Pager pager);
 }
